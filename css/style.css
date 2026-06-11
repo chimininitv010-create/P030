@@ -1,0 +1,230 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0e0e0e;color:#fff;font-family:Arial,sans-serif}
+.wrapper{max-width:1100px;margin:auto;padding:20px}
+
+
+.hero{display:grid;grid-template-columns:200px 1fr;gap:20px;margin-bottom:30px}
+.poster{width:100%;border-radius:12px;border:2px solid #faef7b}
+.info h1{color:#faef7b;margin-bottom:10px}
+.badges{
+  display: flex;
+  flex-wrap: wrap;        /* 🔑 CLAVE */
+  gap: 8px;               /* espacio entre badges */
+  margin: 12px 0;
+}
+
+.badges span{
+  background: rgba(250,239,123,.15);
+  border: 1px solid rgba(250,239,123,.5);
+  color: #faef7b;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;   /* evita que se rompa el texto */
+}
+
+@media (max-width: 768px){
+  .badges{
+    gap: 6px;
+  }
+
+  .badges span{
+    font-size: 12px;
+    padding: 5px 9px;
+  }
+}
+
+
+.sinopsis{margin-top:12px;line-height:1.5;color:#d6d6d6}
+
+
+.player{position:relative;
+		margin-bottom:30px;
+		border-radius:14px;
+		overflow:hidden;
+        aspect-ratio:16/9;
+        border-radius:14px;
+        border:1.5px solid #faef7b;}
+
+.player iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+
+  filter:contrast(1.06) saturate(1.08) brightness(1.02);
+  transform:translateZ(0); /* 🔥 mejora render GPU */
+}
+
+.controles-player{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 30px;
+}
+
+.controles-player button{
+  flex: 1;
+  background: #1c1c1c;
+  color: #faef7b;
+  border: 1px solid rgba(250,239,123,.4);
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.controles-player button:hover{
+  background:#faef7b;
+  color:#000;
+}
+
+#btnActual{
+  flex: 1.4;
+}
+
+.temporada h3{
+  margin-bottom: 18px; /* 👈 separa título de botones */
+}
+
+
+.episodios{display:flex;flex-wrap:wrap;gap:10px}
+.episodios button{background:#1c1c1c;color:#fff;border:1px solid rgba(250,239,123,.4);padding:10px 14px;border-radius:8px;cursor:pointer}
+.episodios button.visto{background:#faef7b;color:#000}
+
+
+.siguiente-box{text-align:center;margin-bottom:20px}
+
+
+
+.volver{display:inline-block;margin-top:30px;padding:12px 22px;background:#faef7b;color:#000;font-weight:700;border-radius:8px;text-decoration:none}
+.acciones-finales{
+  display: flex;
+  justify-content: space-between; /* 👈 izquierda / derecha */
+  gap: 12px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.acciones-finales .volver{
+  flex: 1;
+  text-align: center;
+}
+
+
+@media(max-width:768px){
+.hero{grid-template-columns:1fr;text-align:center}
+.poster{max-width:180px;margin:auto}
+}
+
+
+button.activo {
+  background: #ffcf33 !important;
+  color:#000 !important;
+  font-weight: 700 !important;   /* 👈 negrita */
+  
+    box-shadow:
+    0 0 6px rgba(250,239,123,0.5),
+    0 0 14px rgba(250,239,123,0.3);
+}
+
+
+.disabled{
+  opacity:.4;
+  pointer-events:none;
+}
+
+.servidores{
+  background: rgba(255,255,255,.03);
+  padding:6px;
+  border-radius:10px;
+  display:flex;
+  gap:10px;
+}
+
+.servidores button{
+  background:#1c1c1c;
+  color:#fff;
+  border:1px solid rgba(250,239,123,.4);
+  padding:14px 44px;; /* 👈 más ancho horizontal */
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.2s;
+  flex:1;
+}
+
+.servidores button:hover{
+  background: rgba(250,239,123,.15);
+  color:#faef7b;
+}
+
+
+.servidores button.disabled{
+  opacity:.4;
+  pointer-events:none;
+  filter: grayscale(.3);
+}
+
+.player iframe{
+  image-rendering:auto;
+  filter:contrast(1.05) saturate(1.05);
+  
+}
+
+/* ===== NETFLIX NEXT OVERLAY ===== */
+
+.next-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  background:linear-gradient(transparent, rgba(0,0,0,.75));
+  opacity:0;
+  pointer-events:none;
+  transition:.35s;
+}
+
+.next-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.next-box{
+  margin:20px;
+  background:rgba(0,0,0,.85);
+  border:1px solid #faef7b;
+  padding:14px 22px;
+  border-radius:12px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  animation:fadeUp .35s ease;
+  backdrop-filter: blur(6px);
+  box-shadow:0 0 18px rgba(250,239,123,.25);
+}
+
+.next-text{
+  color:#faef7b;
+  font-weight:700;
+}
+
+.next-box button{
+  background:#faef7b;
+  color:#000;
+  border:none;
+  padding:6px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+@keyframes fadeUp{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
